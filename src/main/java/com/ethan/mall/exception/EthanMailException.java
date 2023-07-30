@@ -1,6 +1,6 @@
 package com.ethan.mall.exception;
 
-public class EthanMailException extends Exception {
+public class EthanMailException extends RuntimeException {
     private final Integer code;
     private final String message;
 

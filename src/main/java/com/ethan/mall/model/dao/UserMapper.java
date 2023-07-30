@@ -1,6 +1,7 @@
 package com.ethan.mall.model.dao;
 
 import com.ethan.mall.model.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +17,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User selectByName(String userName);
+
+    User selectLogin(@Param("userName") String userName, @Param("password") String password);
 }

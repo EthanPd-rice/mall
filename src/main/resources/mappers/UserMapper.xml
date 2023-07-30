@@ -120,4 +120,11 @@
     from ethan_mall_user
     where username = #{userName,jdbcType=VARCHAR}
   </select>
+  <select id="selectLogin" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from ethan_mall_user
+    where username = #{userName,jdbcType=VARCHAR}
+    and password = #{password,jdbcType=VARCHAR}
+  </select>
 </mapper>
