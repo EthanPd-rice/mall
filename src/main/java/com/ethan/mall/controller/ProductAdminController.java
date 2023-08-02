@@ -9,12 +9,13 @@ import com.ethan.mall.model.request.AddProductReq;
 import com.ethan.mall.model.request.UpdateCategoryReq;
 import com.ethan.mall.model.request.UpdateProductReq;
 import com.ethan.mall.service.ProductService;
+import com.github.pagehelper.PageInfo;
+import com.sun.xml.internal.ws.api.FeatureConstructor;
+import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -24,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Controller
@@ -94,5 +96,19 @@ public class ProductAdminController {
         return ApiRestResponse.success();
     }
 
+    @ApiOperation("后台批量上下架接口")
+    @PostMapping("/admin/product/batchUpdateSellStatus")
+    @ResponseBody
+    public ApiRestResponse batchUpdateSellStatus(@RequestParam Integer[] ids,@RequestParam Integer sellStatus){
+        productService.batchUpdateSellStatus(ids,sellStatus);
+        return ApiRestResponse.success();
+    }
 
+    @ApiOperation("后台商品列表")
+    @GetMapping("/admin/product/list")
+    @ResponseBody
+    public ApiRestResponse listProductForAdmin(@RequestParam  Integer pageNum,@RequestParam Integer pageSize){
+        PageInfo pageInfo = productService.listProductForAdmin(pageNum,pageSize);
+        return ApiRestResponse.success(pageInfo);
+    }
 }
