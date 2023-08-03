@@ -34,7 +34,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void add(Integer userId, Integer productId, Integer count){
+    public List<CartVO> add(Integer userId, Integer productId, Integer count){
         Product product = productMapper.selectByPrimaryKey(productId);
         if(product==null || !product.getStatus().equals(1) || count > product.getStock() ){
             throw new EthanMailException(EthanMallExceptionEnum.CART_NOT_SELL);
@@ -57,6 +57,7 @@ public class CartServiceImpl implements CartService {
                 cartMapper.insertSelective(cartNew);
             }
         }
+        return this.list(userId);
     }
 
 }

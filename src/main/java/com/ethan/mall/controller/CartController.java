@@ -24,6 +24,7 @@ public class CartController {
     @GetMapping("/cart/list")
     @ResponseBody
     public ApiRestResponse list(){
+        //避免横向越权,从UserFilter.currentUser.getId()取到用户id
         List<CartVO> cartVOList = cartService.list(UserFilter.currentUser.getId());
         return ApiRestResponse.success(cartVOList);
     }
@@ -33,7 +34,6 @@ public class CartController {
     @PostMapping("/cart/add")
     @ResponseBody
     public ApiRestResponse add(@RequestParam Integer productId, @RequestParam Integer count){
-        cartService.add(UserFilter.currentUser.getId(),productId,count);
-        return ApiRestResponse.success();
+        return ApiRestResponse.success(cartService.add(UserFilter.currentUser.getId(),productId,count));
     }
 }
