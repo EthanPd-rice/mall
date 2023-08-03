@@ -114,4 +114,24 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByUserProductId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from ethan_mall_cart
+    where product_id = #{productId} and user_id = #{userId}
+  </select>
+  <select id="selectCartVOById" resultType="com.ethan.mall.model.vo.CartVO">
+    select
+    c.id as id,
+    p.id as productId,
+    c.user_id as userId,
+    c.quantity as quantity,
+    c.selected as selected,
+    p.price as price,
+    p.name as productName,
+    p.image as productImage
+    from ethan_mall_cart c left join ethan_mall_product p on
+    c.product_id = p.id
+    where c.user_id = #{userId}
+    and p.status = 1
+  </select>
 </mapper>

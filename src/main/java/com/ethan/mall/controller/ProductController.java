@@ -35,4 +35,6 @@ public class ProductController {
         PageInfo pageInfo = productService.list(productListReq);
         return ApiRestResponse.success(pageInfo);
     }
+
+
 }

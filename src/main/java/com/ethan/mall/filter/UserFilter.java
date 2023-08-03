@@ -18,6 +18,8 @@ public class UserFilter implements Filter {
     @Resource
     private UserService userService;
 
+    public static User currentUser;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -28,7 +30,7 @@ public class UserFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpSession session = request.getSession();
 
-        User currentUser = (User)session.getAttribute(Constant.ETHAN_MALL_USER);
+        currentUser = (User)session.getAttribute(Constant.ETHAN_MALL_USER);
 
         if(currentUser == null){
             PrintWriter out = new HttpServletResponseWrapper((HttpServletResponse) servletResponse).getWriter();
@@ -41,8 +43,7 @@ public class UserFilter implements Filter {
             out.close();
             return;
         }
-
-
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

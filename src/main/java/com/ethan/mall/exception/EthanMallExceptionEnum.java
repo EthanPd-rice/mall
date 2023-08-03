@@ -19,6 +19,8 @@ public enum EthanMallExceptionEnum {
     ,DELETE_FAILED(10013,"删除失败")
     ,MKDIR_FAILED(10014,"文件夹创建失败")
     ,UPLOAD_FAILED(10015,"图片上传失败")
+    ,CART_NOT_SELL(10016,"商品不可售")
+    ,CART_NOT_STOCK(10017,"商品库存不够")
     ,SYSTEM_ERROR(20000,"系统异常");
     /**
      * 异常码

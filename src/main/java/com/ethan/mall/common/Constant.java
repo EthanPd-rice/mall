@@ -19,7 +19,12 @@ public class Constant {
         FILE_UPLOAD_DIR = fileUploadDir;
     }
 
-    public interface  ProductListOrderBy{
+    public interface ProductListOrderBy{
         Set<String> PRICE_ASC_DESC = Sets.newHashSet("price desc","price asc");
+    }
+
+    public interface CartChecked{
+        int UN_CHECKED = 0;//g
+        int CHECKED = 1;
     }
 }
