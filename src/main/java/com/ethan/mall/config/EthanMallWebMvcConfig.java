@@ -13,6 +13,7 @@ public class EthanMallWebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //凡是以images打头的都会转发到addResourceLocations的地址
+        registry.addResourceHandler("/admin/**").addResourceLocations("classpath:/static/admin");
         registry.addResourceHandler("/images/**").addResourceLocations("file:"+ Constant.FILE_UPLOAD_DIR);
         registry.addResourceHandler("swagger-ui.html").addResourceLocations(
                 "classpath:/META-INF/resources/");

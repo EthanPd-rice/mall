@@ -5,7 +5,10 @@ import com.ethan.mall.common.Constant;
 import com.ethan.mall.exception.EthanMailException;
 import com.ethan.mall.exception.EthanMallExceptionEnum;
 import com.ethan.mall.model.pojo.User;
+import com.ethan.mall.service.EmailService;
 import com.ethan.mall.service.UserService;
+import com.ethan.mall.util.EmailUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +23,8 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @Resource
     private UserService userService;
+    @Resource
+    private EmailService emailService;
     @GetMapping("/test")
     @ResponseBody
     public User personalPage(@RequestParam Integer id){
@@ -110,5 +115,31 @@ public class UserController {
             return ApiRestResponse.error(EthanMallExceptionEnum.NEED_ADMIN);
         }
 
+    }
+
+    @ApiOperation("发送邮件")
+    @PostMapping("user/sendEmail")
+    @ResponseBody
+    public ApiRestResponse sendEmail(@RequestParam String emailAddress ){
+        boolean validEmailAddress = EmailUtil.isValidEmailAddress(emailAddress);
+        if(validEmailAddress){
+            //检验通过后，看邮件是否被注册
+            boolean emailPassed = userService.checkEmailRegistered(emailAddress);
+            if(!emailPassed){
+                return ApiRestResponse.error(EthanMallExceptionEnum.EMAIL_ALREADY_BEEN_REGISTERED);
+            } else {
+                String verificationCode = EmailUtil.genVerificationCode();
+                //验证码信息比较适合放在redis里面
+                Boolean saveEmailToRedis = emailService.saveEmailToRedis(emailAddress, verificationCode);
+                if(saveEmailToRedis){
+                    emailService.sendSimpleMessage(emailAddress,Constant.EMAIL_SUBJECT,"欢迎注册，您的验证码是："+verificationCode);
+                    return ApiRestResponse.success();
+                }else{
+                    return ApiRestResponse.error(EthanMallExceptionEnum.EMAIL_ALREADY_BEEN_SEND);
+                }
+            }
+        }else{
+            return ApiRestResponse.error(EthanMallExceptionEnum.WRONG_EMAIL);
+        }
     }
 }

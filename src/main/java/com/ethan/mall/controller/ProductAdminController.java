@@ -10,7 +10,6 @@ import com.ethan.mall.model.request.UpdateCategoryReq;
 import com.ethan.mall.model.request.UpdateProductReq;
 import com.ethan.mall.service.ProductService;
 import com.github.pagehelper.PageInfo;
-import com.sun.xml.internal.ws.api.FeatureConstructor;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.BeanUtils;

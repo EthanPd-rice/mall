@@ -15,4 +15,7 @@ public interface UserService {
     void updateInformation(User user) throws EthanMailException;
 
     boolean checkAdminRole(User user);
+
+
+    boolean checkEmailRegistered(String emailAddress);
 }

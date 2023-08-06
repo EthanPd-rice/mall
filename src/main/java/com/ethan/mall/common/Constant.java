@@ -13,6 +13,8 @@ public class Constant {
     public static final String ETHAN_MALL_USER = "ethan_mall_user";
     //盐值不能太简单，复杂点
     public static final String SALT = "SJsdsSK.SAD/.S28371][S]./";
+    public static final String EMAIL_SUBJECT = "您的验证码";
+    public static final String EMAIL_FROM = "1030702065@qq.com";
 
     public static String FILE_UPLOAD_DIR;
 

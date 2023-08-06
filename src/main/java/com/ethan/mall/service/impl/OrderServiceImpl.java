@@ -308,7 +308,8 @@ public class OrderServiceImpl implements OrderService {
         if(order == null){
             throw new EthanMailException(EthanMallExceptionEnum.NO_ORDER);
         }
-        if(!UserFilter.currentUser.getId().equals(2)&&!order.getUserId().equals(UserFilter.currentUser.getId())){
+        Integer userId = UserFilter.currentUser.getId();
+        if(!UserFilter.currentUser.getRole().equals(2) && !order.getUserId().equals(UserFilter.currentUser.getId())){
             throw new EthanMailException(EthanMallExceptionEnum.NO_YOU_ORDER);
         }
         if(order.getOrderStatus() == Constant.OrderStatusEnum.DELIVERED.getCode()){

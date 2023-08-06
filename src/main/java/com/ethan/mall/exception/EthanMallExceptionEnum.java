@@ -27,6 +27,9 @@ public enum EthanMallExceptionEnum {
     ,NO_ORDER(10021,"订单不存在")
     ,NO_YOU_ORDER(10022,"不是你的订单")
     ,WRONG_ORDER_STATUS(10023,"订单状态不符")
+    ,WRONG_EMAIL(10024,"非法的邮件地址")
+    ,EMAIL_ALREADY_BEEN_REGISTERED(10025,"email地址已被注册")
+    ,EMAIL_ALREADY_BEEN_SEND(10026,"email已发送，若无法收到，请稍后再试")
     ,SYSTEM_ERROR(20000,"系统异常");
     /**
      * 异常码

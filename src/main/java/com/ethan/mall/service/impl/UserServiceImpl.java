@@ -71,4 +71,14 @@ public class UserServiceImpl implements UserService {
         //1是普通用户，2是管理员
         return user.getRole().equals(2);
     }
+
+    @Override
+    public boolean checkEmailRegistered(String emailAddress){
+        User user = userMapper.selectOneByEmailAddress(emailAddress);
+        if(user!=null){
+            //如果被注册了，返回false
+            return false;
+        }
+        return true;
+    }
 }
