@@ -23,6 +23,21 @@ public class CartVO {
 
     private String productImage;
 
+    @Override
+    public String toString() {
+        return "CartVO{" +
+                "id=" + id +
+                ", productId=" + productId +
+                ", userId=" + userId +
+                ", quantity=" + quantity +
+                ", selected=" + selected +
+                ", price=" + price +
+                ", totalPrice=" + totalPrice +
+                ", productName='" + productName + '\'' +
+                ", productImage='" + productImage + '\'' +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }
