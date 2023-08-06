@@ -2,6 +2,8 @@ package com.ethan.mall.model.dao;
 
 import com.ethan.mall.model.pojo.Order;
 
+import java.util.List;
+
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,10 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    Order selectByOrderNo(String OrderNo);
+
+    List<Order> selectByUserId(Integer userId);
+
+    List<Order> selectAllForAdmin();
 }

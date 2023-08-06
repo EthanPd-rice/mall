@@ -36,4 +36,38 @@ public class CartController {
     public ApiRestResponse add(@RequestParam Integer productId, @RequestParam Integer count){
         return ApiRestResponse.success(cartService.add(UserFilter.currentUser.getId(),productId,count));
     }
+
+    @ApiOperation("更新购物车某商品数量")
+    @PostMapping("/cart/update")
+    @ResponseBody
+    public ApiRestResponse update(@RequestParam Integer productId,@RequestParam Integer count){
+        //用户id和订单id不坐参数从控制台传进去
+        List<CartVO> cartVOS = cartService.update(UserFilter.currentUser.getId(),productId,count);
+        return ApiRestResponse.success(cartVOS);
+    }
+
+    @ApiOperation("删除购物车的某个商品")
+    @PostMapping("/cart/delete")
+    @ResponseBody
+    public ApiRestResponse delete(@RequestParam Integer productId){
+        List<CartVO> cartVOS = cartService.delete(UserFilter.currentUser.getId(),productId);
+        return  ApiRestResponse.success(cartVOS);
+    }
+
+    @ApiOperation("选中/不选中购物车的某个商品")
+    @PostMapping("/cart/select")
+    @ResponseBody
+    public ApiRestResponse select(Integer productId,Integer selected){
+        List<CartVO> cartVOS = cartService.select(UserFilter.currentUser.getId(),productId,selected);
+        return  ApiRestResponse.success(cartVOS);
+    }
+
+    @ApiOperation("全选/全不选购物车的某个商品")
+    @PostMapping("/cart/selectAll")
+    @ResponseBody
+    public ApiRestResponse select(Integer selected){
+        List<CartVO> cartVOS = cartService.selectAll(UserFilter.currentUser.getId(),selected);
+        return  ApiRestResponse.success(cartVOS);
+    }
+
 }

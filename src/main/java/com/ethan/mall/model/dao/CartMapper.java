@@ -21,4 +21,6 @@ public interface CartMapper {
     Cart selectByUserProductId(Integer userId,Integer productId);
 
     List<CartVO> selectCartVOById(Integer userId);
+
+    Integer selectOrNot(Integer userId,Integer productId,Integer selected);
 }

@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 描述：     CartgoryVO，给前端展示用
+ */
+
 public class CategoryVO implements Serializable {
     private Integer id;
 
@@ -20,7 +24,22 @@ public class CategoryVO implements Serializable {
 
     private Date updateTime;
 
+    @Override
+    public String toString() {
+        return "CategoryVO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", parentId=" + parentId +
+                ", orderNum=" + orderNum +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", childCategory=" + childCategory +
+                '}';
+    }
+
     private List<CategoryVO> childCategory = new ArrayList<>();
+
 
     public List<CategoryVO> getChildCategory() {
         return childCategory;

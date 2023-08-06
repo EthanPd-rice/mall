@@ -210,4 +210,18 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select <include refid="Base_Column_List"/>
+    from ethan_mall_order
+    where order_no = #{orderNo}
+  </select>
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select <include refid="Base_Column_List"/>
+    from ethan_mall_order
+    where user_id = #{userId}
+  </select>
+  <select id="selectAllForAdmin" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from ethan_mall_order
+  </select>
 </mapper>

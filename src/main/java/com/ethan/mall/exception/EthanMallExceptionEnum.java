@@ -21,6 +21,12 @@ public enum EthanMallExceptionEnum {
     ,UPLOAD_FAILED(10015,"图片上传失败")
     ,CART_NOT_SELL(10016,"商品不可售")
     ,CART_NOT_STOCK(10017,"商品库存不够")
+    ,SELECT_FAILED(10018,"勾选失败")
+    ,CART_CHECK_NULL(10019,"购物车已勾选的商品为空")
+    ,NO_EMUM(10020,"未找到对应枚举")
+    ,NO_ORDER(10021,"订单不存在")
+    ,NO_YOU_ORDER(10022,"不是你的订单")
+    ,WRONG_ORDER_STATUS(10023,"订单状态不符")
     ,SYSTEM_ERROR(20000,"系统异常");
     /**
      * 异常码
