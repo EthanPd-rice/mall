@@ -3,6 +3,7 @@ package com.ethan.mall.controller;
 import com.ethan.mall.common.ApiRestResponse;
 import com.ethan.mall.common.Constant;
 import com.ethan.mall.exception.EthanMallExceptionEnum;
+import com.ethan.mall.filter.UserFilter;
 import com.ethan.mall.model.pojo.Category;
 import com.ethan.mall.model.pojo.User;
 import com.ethan.mall.model.request.AddCategoryReq;
@@ -34,13 +35,13 @@ public class CategoryController {
     @ApiOperation("后台添加目录")
     @PostMapping("/admin/category/add")
     @ResponseBody
-    public ApiRestResponse addCategory(HttpSession session, @Valid @RequestBody AddCategoryReq addCategoryReq){
+    public ApiRestResponse addCategory( @Valid @RequestBody AddCategoryReq addCategoryReq){
         //若有参数是空的，则提示参数不能为空
 //        if(addCategoryReq.getName() == null || addCategoryReq.getOrderNum() == null
 //                || addCategoryReq.getParentId() == null || addCategoryReq.getOrderNum() == null){
 //            return ApiRestResponse.error(EthanMallExceptionEnum.PARA_NOT_NULL);
 //        }
-        User currentUser = (User) session.getAttribute(Constant.ETHAN_MALL_USER);
+        User currentUser = UserFilter.currentUser;
         //判断用户是否登录状态
         if(currentUser == null){
             return ApiRestResponse.error(EthanMallExceptionEnum.NEED_LOGIN);
@@ -59,8 +60,8 @@ public class CategoryController {
     @ApiOperation("后台更新目录")
     @PostMapping("/admin/category/update")
     @ResponseBody
-    public ApiRestResponse updateCategory(@Valid @RequestBody UpdateCategoryReq updateCategoryReq,HttpSession session){
-        User currentUser = (User) session.getAttribute(Constant.ETHAN_MALL_USER);
+    public ApiRestResponse updateCategory(@Valid @RequestBody UpdateCategoryReq updateCategoryReq){
+        User currentUser = UserFilter.currentUser;
         //判断用户是否登录状态
         if(currentUser == null){
             return ApiRestResponse.error(EthanMallExceptionEnum.NEED_LOGIN);

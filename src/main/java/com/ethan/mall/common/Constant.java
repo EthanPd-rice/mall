@@ -73,4 +73,17 @@ public class Constant {
             this.value = value;
         }
     }
+
+    public static final String JWT_KEY = "ethan_mall";
+
+    public static final String JWT_TOKEN = "jwt_token";
+
+    public static final String USER_ID = "user_id";
+
+    public static final String USER_NAME = "user_name";
+
+    public static final String USER_ROLE = "user_role";
+
+    public static final Long EXPIRE_TIME = 60 * 1000 * 60 *24 * 1000L;//单位是毫秒
+//    public static final Long EXPIRE_TIME = 60L;//单位是毫秒
 }

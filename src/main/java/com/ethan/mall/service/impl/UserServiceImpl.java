@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void register(String username, String password) throws EthanMailException {
+    public void register(String username, String password,String emailAddress) throws EthanMailException {
         User result = userMapper.selectByName(username);
         //本应根据result是否为null，进行下一步判断并返回，但这是controller的工作，不可以在service实现类做响应success或fail
         //这时候可以抛出自定义异常的方法解决,将异常跑出来给controller
@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
         //没有重名信息，写进数据库
         User user = new User();
         user.setUsername(username);
+        user.setEmailAddress(emailAddress);
         try {
             user.setPassword(MD5Utils.getMD5Str(password));
         } catch (NoSuchAlgorithmException e) {

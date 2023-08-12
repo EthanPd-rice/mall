@@ -8,7 +8,7 @@ import com.ethan.mall.model.pojo.User;
  */
 public interface UserService {
     User getUser(Integer id);
-    void register(String username,String password) throws EthanMailException;
+    void register(String username,String password,String emailAddress) throws EthanMailException;
 
     User login(String userName, String password) throws EthanMailException;
 

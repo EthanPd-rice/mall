@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 描述 Admin过滤器的配置
+ * 描述 User过滤器的配置
  */
 @Configuration
 public class UserFilterConfig {
@@ -21,13 +21,14 @@ public class UserFilterConfig {
 
     //filter放到过滤器的链路中去,bean名不能重复
     @Bean(name = "userFilterConf")
-    public FilterRegistrationBean adminFilterConfig(){
+    public FilterRegistrationBean userFilterConfig(){
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         //设置adminFilter过滤器
         filterRegistrationBean.setFilter(userFilter());
         //设置过滤器所要拦截的URL
         filterRegistrationBean.addUrlPatterns("/cart/*");
         filterRegistrationBean.addUrlPatterns("/order/*");
+        filterRegistrationBean.addUrlPatterns("/user/update");
         //设置过滤器名字
         filterRegistrationBean.setName("userFilterConfig");
         return filterRegistrationBean;

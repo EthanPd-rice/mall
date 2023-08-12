@@ -30,6 +30,11 @@ public enum EthanMallExceptionEnum {
     ,WRONG_EMAIL(10024,"非法的邮件地址")
     ,EMAIL_ALREADY_BEEN_REGISTERED(10025,"email地址已被注册")
     ,EMAIL_ALREADY_BEEN_SEND(10026,"email已发送，若无法收到，请稍后再试")
+    ,NEED_EMAIL(10027,"邮箱不能为空")
+    ,NEED_VERIFY(10028,"验证码不能为空")
+    ,WRONG_VERIFY(10029,"验证码错误")
+    ,TOKEN_EXPIRED(10029,"token过期")
+    ,TOKEN_WRONG(10030,"token解析失败")
     ,SYSTEM_ERROR(20000,"系统异常");
     /**
      * 异常码
