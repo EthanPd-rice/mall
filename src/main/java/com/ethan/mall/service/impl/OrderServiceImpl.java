@@ -56,8 +56,8 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     private OrderItemMapper orderItemMapper;
 
-    @Value("${file.upload.ip}")
-    String ip;
+    @Value("${file.upload.uri}")
+    String uri;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -244,7 +244,7 @@ public class OrderServiceImpl implements OrderService {
     public String qrcode(String orderNo){
         ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        String address = ip+":"+request.getLocalPort();
+        String address = uri;
         String payUrl = "http://"+address+"/pay?orderNo="+orderNo;
         try {
             QRCodeGenerator.generateQRCodeImage(payUrl,350,350, Constant.FILE_UPLOAD_DIR+orderNo+".png");
@@ -269,7 +269,7 @@ public class OrderServiceImpl implements OrderService {
             order.setPayTime(new Date());
             orderMapper.updateByPrimaryKeySelective(order);
         }else{
-            throw new EthanMailException(EthanMallExceptionEnum.WRONG_ORDER_STATUS);
+            throw new EthanMailException(EthanMallExceptionEnum.PAY_WRONG_ORDER_STATUS);
         }
     }
 
@@ -298,7 +298,7 @@ public class OrderServiceImpl implements OrderService {
             order.setDeliveryTime(new Date());
             orderMapper.updateByPrimaryKeySelective(order);
         }else{
-            throw new EthanMailException(EthanMallExceptionEnum.WRONG_ORDER_STATUS);
+            throw new EthanMailException(EthanMallExceptionEnum.DELIVER_WRONG_ORDER_STATUS);
         }
     }
 
@@ -317,7 +317,7 @@ public class OrderServiceImpl implements OrderService {
             order.setEndTime(new Date());
             orderMapper.updateByPrimaryKeySelective(order);
         }else{
-            throw new EthanMailException(EthanMallExceptionEnum.WRONG_ORDER_STATUS);
+            throw new EthanMailException(EthanMallExceptionEnum.FINISH_WRONG_ORDER_STATUS);
         }
     }
 

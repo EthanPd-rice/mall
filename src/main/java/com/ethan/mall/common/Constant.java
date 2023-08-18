@@ -15,6 +15,13 @@ public class Constant {
     public static final String SALT = "SJsdsSK.SAD/.S28371][S]./";
     public static final String EMAIL_SUBJECT = "您的验证码";
     public static final String EMAIL_FROM = "1030702065@qq.com";
+    //图片规格
+    public static final Integer IMAGE_SIZE = 400;
+    //图片透明度
+    public static final Float IMAGE_OPACITY = 0.5f;
+    //水印文件名称
+    public static final String WATER_MARK_JPG = "watermark.png";
+
 
     public static String FILE_UPLOAD_DIR;
 

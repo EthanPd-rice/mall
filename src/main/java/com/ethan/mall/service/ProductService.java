@@ -6,6 +6,9 @@ import com.ethan.mall.model.request.ProductListReq;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * 商品Service
  */
@@ -25,4 +28,6 @@ public interface ProductService {
     Product detail(@RequestParam Integer id);
 
     PageInfo list(ProductListReq productListReq);
+
+    void addProductByExcel(File destFile) throws IOException;
 }

@@ -35,7 +35,13 @@ public enum EthanMallExceptionEnum {
     ,WRONG_VERIFY(10029,"验证码错误")
     ,TOKEN_EXPIRED(10029,"token过期")
     ,TOKEN_WRONG(10030,"token解析失败")
-    ,SYSTEM_ERROR(20000,"系统异常");
+    ,PRICE_TOO_LOW(10031,"价格太低")
+    ,STOCK_TOO_MANY(10032,"库存太高")
+    ,CANCEL_WRONG_ORDER_STATUS(10033, "订单状态有误，付款后暂不支持取消订单")
+    ,PAY_WRONG_ORDER_STATUS(10034, "订单状态有误，仅能在未付款时付款")
+    ,DELIVER_WRONG_ORDER_STATUS(10035, "订单状态有误，仅能在付款后发货")
+    ,FINISH_WRONG_ORDER_STATUS(10036, "请在后台管理系统操作发货后，再“确认收货”完单")
+    ,SYSTEM_ERROR(20000,"系统异常，请从控制台或日志中查看具体错误信息");
     /**
      * 异常码
      */
